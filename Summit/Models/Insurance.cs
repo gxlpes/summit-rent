@@ -3,18 +3,16 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Summit.Models
 {
-    [Table("clients")]
-    public class Client
+    [Table("insurances")]
+    public class Insurance
     {
         [Key]
-        [Column("client_id")]
+        [Column("car_id")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        [Column("name")]
-        public string Name { get; set; }
+        public string name { get; set; }
 
-        [Column("cpf")]
-        public string Cpf { get; set; }
+        public double price { get; set; }
     }
 }

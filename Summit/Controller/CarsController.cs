@@ -10,7 +10,7 @@ using Summit.Models;
 
 namespace Summit.Controller
 {
-    [Route("api/cars")]
+    [Route("api/[controller]")]
     [ApiController]
     public class CarsController : ControllerBase
     {
@@ -22,13 +22,9 @@ namespace Summit.Controller
         }
 
         // GET: api/Cars
-        [HttpGet()]
+        [HttpGet]
         public async Task<ActionResult<IEnumerable<Car>>> GetCar()
         {
-          if (_context.Car == null)
-          {
-              return NotFound();
-          }
             return await _context.Car.ToListAsync();
         }
 
@@ -36,10 +32,6 @@ namespace Summit.Controller
         [HttpGet("{id}")]
         public async Task<ActionResult<Car>> GetCar(int id)
         {
-          if (_context.Car == null)
-          {
-              return NotFound();
-          }
             var car = await _context.Car.FindAsync(id);
 
             if (car == null)
@@ -86,10 +78,6 @@ namespace Summit.Controller
         [HttpPost]
         public async Task<ActionResult<Car>> PostCar(Car car)
         {
-          if (_context.Car == null)
-          {
-              return Problem("Entity set 'AppDbContext.Car'  is null.");
-          }
             _context.Car.Add(car);
             await _context.SaveChangesAsync();
 
@@ -100,10 +88,6 @@ namespace Summit.Controller
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCar(int id)
         {
-            if (_context.Car == null)
-            {
-                return NotFound();
-            }
             var car = await _context.Car.FindAsync(id);
             if (car == null)
             {
@@ -118,7 +102,7 @@ namespace Summit.Controller
 
         private bool CarExists(int id)
         {
-            return (_context.Car?.Any(e => e.Id == id)).GetValueOrDefault();
+            return _context.Car.Any(e => e.Id == id);
         }
     }
 }

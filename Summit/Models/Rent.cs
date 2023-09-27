@@ -18,8 +18,19 @@ namespace Summit.Models
         public Car Car { get; set; }
 
         [Column("cpf")]
-        public Client Client { get; set; }
+        public Customer Client { get; set; }
 
+        [Column("payment")]
+        public Payment Payment { get; set; }
+
+        [Column("insurance")]
+        public Insurance insurance { get; set; }
+
+        [Column("departure")]
+        public Departure departure { get; set; }
+
+        [Column("destination")]
+        public Destination destination { get; set; }
 
     }
 }
