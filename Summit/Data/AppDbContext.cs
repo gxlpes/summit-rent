@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Summit.Models;
-using System.Collections.Generic;
 
 namespace Summit.Data
 {
@@ -9,6 +8,11 @@ namespace Summit.Data
         public AppDbContext(DbContextOptions<AppDbContext> options)
         : base(options)
         { }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlite("DataSource=summit.db;Cache=shared");
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

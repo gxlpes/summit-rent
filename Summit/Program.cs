@@ -1,4 +1,3 @@
-using Microsoft.EntityFrameworkCore;
 using Summit.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,14 +8,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 
-builder.Services.AddDbContext<AppDbContext>
-(options => options.UseMySql(
-"server=localhost;port=3306;initial catalog=summit;uid=root;pwd=123",
-        Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.1.0-mysql")));
+builder.Services.AddDbContext<AppDbContext>();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
