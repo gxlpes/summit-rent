@@ -1,58 +1,53 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Summit.Data;
 using Summit.Models;
 
 namespace Summit.Controller
 {
-    [Route("api/[controller]")]
+    [Route("api/saida")]
     [ApiController]
-    public class CarsController : ControllerBase
+    public class SaidasController : ControllerBase
     {
         private readonly AppDbContext _context;
 
-        public CarsController(AppDbContext context)
+        public SaidasController(AppDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/Cars
+        // GET: api/Saidas
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Car>>> GetCar()
+        public async Task<ActionResult<IEnumerable<Saida>>> GetSaida()
         {
-            return await _context.Car.ToListAsync();
+            return await _context.Saida.ToListAsync();
         }
 
-        // GET: api/Cars/5
+        // GET: api/Saidas/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Car>> GetCar(int id)
+        public async Task<ActionResult<Saida>> GetSaida(Guid id)
         {
-            var car = await _context.Car.FindAsync(id);
+            var saida = await _context.Saida.FindAsync(id);
 
-            if (car == null)
+            if (saida == null)
             {
                 return NotFound();
             }
 
-            return car;
+            return saida;
         }
 
-        // PUT: api/Cars/5
+        // PUT: api/Saidas/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCar(int id, Car car)
+        public async Task<IActionResult> PutSaida(Guid id, Saida saida)
         {
-            if (id != car.Id)
+            if (id != saida.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(car).State = EntityState.Modified;
+            _context.Entry(saida).State = EntityState.Modified;
 
             try
             {
@@ -60,7 +55,7 @@ namespace Summit.Controller
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!CarExists(id))
+                if (!SaidaExists(id))
                 {
                     return NotFound();
                 }
@@ -73,36 +68,36 @@ namespace Summit.Controller
             return NoContent();
         }
 
-        // POST: api/Cars
+        // POST: api/Saidas
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Car>> PostCar(Car car)
+        public async Task<ActionResult<Saida>> PostSaida(Saida saida)
         {
-            _context.Car.Add(car);
+            _context.Saida.Add(saida);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetCar", new { id = car.Id }, car);
+            return CreatedAtAction("GetSaida", new { id = saida.Id }, saida);
         }
 
-        // DELETE: api/Cars/5
+        // DELETE: api/Saidas/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteCar(int id)
+        public async Task<IActionResult> DeleteSaida(Guid id)
         {
-            var car = await _context.Car.FindAsync(id);
-            if (car == null)
+            var saida = await _context.Saida.FindAsync(id);
+            if (saida == null)
             {
                 return NotFound();
             }
 
-            _context.Car.Remove(car);
+            _context.Saida.Remove(saida);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool CarExists(int id)
+        private bool SaidaExists(Guid id)
         {
-            return _context.Car.Any(e => e.Id == id);
+            return _context.Saida.Any(e => e.Id == id);
         }
     }
 }

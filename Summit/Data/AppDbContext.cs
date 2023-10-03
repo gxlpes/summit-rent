@@ -19,25 +19,25 @@ namespace Summit.Data
             base.OnModelCreating(modelBuilder);
         }
 
-        public DbSet<Car> Car { get; set; }
+        public DbSet<Carro> Carro { get; set; }
 
-        public DbSet<Customer> Customer { get; set; }
+        public DbSet<Cliente> Cliente { get; set; }
 
-        public DbSet<Rent> Rent { get; set; }
+        public DbSet<Aluguel> Aluguel { get; set; }
 
-        public DbSet<Insurance> Insurance { get; set; }
+        public DbSet<Seguro> Seguro { get; set; }
 
-        public DbSet<Rating> Rating { get; set; }
+        public DbSet<Avaliacao> Avaliacao { get; set; }
 
-        public DbSet<Payment> Payment { get; set; }
+        public DbSet<Pagamento> Pagamento { get; set; }
 
-        public DbSet<Intent> Intent { get; set; }
+        public DbSet<Tentativa> Tentativa { get; set; }
 
-        public DbSet<Destination> Destination { get; set; }
+        public DbSet<Chegada> Chegada { get; set; }
 
-        public DbSet<Departure> Departure { get; set; }
+        public DbSet<Saida> Saida { get; set; }
 
-        public DbSet<Dealership> Dealership { get; set; }
+        public DbSet<Concessionaria> Concessionaria { get; set; }
 
     }
 }

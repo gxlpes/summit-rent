@@ -3,22 +3,22 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Summit.Models
 {
-    [Table("intents")]
-    public class Intent
+    [Table("tentativas")]
+    public class Tentativa
     {
         [Key]
-        [Column("intent_id")]
+        [Column("id")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         [Column("date")]
         public DateTime DateTime { get; set; }
 
-        [Column("client_id")]
-        public string ClientId { get; set; }
+        [Column("id_cliente")]
+        public Guid ClientId { get; set; }
 
-        [Column("car_id")]
-        public string CarId { get; set; }
+        [Column("id_carro")]
+        public Guid CarId { get; set; }
 
     }
 }
