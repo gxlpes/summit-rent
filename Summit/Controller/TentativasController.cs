@@ -35,47 +35,21 @@ namespace Summit.Controller
             return tentativa;
         }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutTentativa(Guid id, Tentativa tentativa)
-        {
-            if (id != tentativa.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(tentativa).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!TentativaExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
         [HttpPost]
         public async Task<ActionResult<Tentativa>> PostTentativa(Tentativa tentativa)
         {
+            var carro = await _context.Carro.FindAsync(tentativa.CarroId);
+
+            if (carro.Alugado)
+            {
+                return Unauthorized();
+            }
+
             _context.Tentativa.Add(tentativa);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetTentativa", new { id = tentativa.Id }, tentativa);
+            return CreatedAtAction("GetTentativa", new { id = tentativa.ClienteId }, tentativa);
         }
 
-        private bool TentativaExists(Guid id)
-        {
-            return _context.Tentativa.Any(e => e.Id == id);
-        }
     }
 }

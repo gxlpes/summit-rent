@@ -7,18 +7,17 @@ namespace Summit.Models
     public class Tentativa
     {
         [Key]
-        [Column("id")]
+        [Column("cliente_id")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid Id { get; set; }
+        public Guid ClienteId { get; set; }
 
-        [Column("date")]
-        public DateTime DateTime { get; set; }
-
-        [Column("id_cliente")]
-        public Guid ClientId { get; set; }
 
         [Column("id_carro")]
-        public Guid CarId { get; set; }
+        public Guid CarroId { get; set; }
+
+        [Column("date")]
+        public DateTime DataTentativa { get; set; }
+
 
     }
 }

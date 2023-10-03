@@ -16,14 +16,12 @@ namespace Summit.Controller
             _context = context;
         }
 
-        // GET: api/Seguroes
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Seguro>>> GetSeguro()
         {
             return await _context.Seguro.ToListAsync();
         }
 
-        // GET: api/Seguroes/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Seguro>> GetSeguro(int id)
         {
@@ -37,8 +35,6 @@ namespace Summit.Controller
             return seguro;
         }
 
-        // PUT: api/Seguroes/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutSeguro(int id, Seguro seguro)
         {
@@ -68,8 +64,6 @@ namespace Summit.Controller
             return NoContent();
         }
 
-        // POST: api/Seguroes
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<Seguro>> PostSeguro(Seguro seguro)
         {
@@ -79,7 +73,6 @@ namespace Summit.Controller
             return CreatedAtAction("GetSeguro", new { id = seguro.Id }, seguro);
         }
 
-        // DELETE: api/Seguroes/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteSeguro(int id)
         {

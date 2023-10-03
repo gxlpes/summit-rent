@@ -1,17 +1,11 @@
 
 
-## Alunos
-Erick Willian Lui
-Vinicius Guimarães da Cruz
-Leonardo Da Hora Medeiros
-Guilherme Gomes Pereira Lopes
-
-## Models
-Erick Willian Lui - Dealership, Departure
-Vinicius Guimarães da Cruz - Car, Customer
-Leonardo Da Hora Medeiros - Destination, Insurance
-Guilherme Lopes - Rating, Intent
-ChatGPT - Payment, Rent
+## Alunos & Models
+- Erick Willian Lui (Concessionaria, Saida)
+- Vinicius Guimarães da Cruz (Carro, Cliente)
+- Leonardo Da Hora Medeiros (Chegada, Seguro)
+- Guilherme Lopes (Avaliacao, Tentativa)
+- ChatGPT (Pagamento, Aluguel)
 
 
 

@@ -16,14 +16,12 @@ namespace Summit.Controller
             _context = context;
         }
 
-        // GET: api/Saidas
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Saida>>> GetSaida()
         {
             return await _context.Saida.ToListAsync();
         }
 
-        // GET: api/Saidas/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Saida>> GetSaida(Guid id)
         {
@@ -37,8 +35,6 @@ namespace Summit.Controller
             return saida;
         }
 
-        // PUT: api/Saidas/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutSaida(Guid id, Saida saida)
         {
@@ -68,8 +64,6 @@ namespace Summit.Controller
             return NoContent();
         }
 
-        // POST: api/Saidas
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<Saida>> PostSaida(Saida saida)
         {
@@ -79,7 +73,6 @@ namespace Summit.Controller
             return CreatedAtAction("GetSaida", new { id = saida.Id }, saida);
         }
 
-        // DELETE: api/Saidas/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteSaida(Guid id)
         {

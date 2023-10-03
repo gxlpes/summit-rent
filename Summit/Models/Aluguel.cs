@@ -6,9 +6,14 @@ namespace Summit.Models
 {
     [Table("alugueis")]
     public class Aluguel
+
     {
-        public Aluguel(Carro carro, Cliente cliente, Pagamento pagamento, Seguro seguro, Saida saida, Chegada chegada)
+        public Aluguel() { }
+
+
+        public Aluguel(DateTime data, Carro carro, Cliente cliente, Pagamento pagamento, Seguro seguro, Saida saida, Chegada chegada)
         {
+            Data = data;
             Carro = carro;
             Cliente = cliente;
             Pagamento = pagamento;

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Summit.Data;
 using Summit.Models;
@@ -73,7 +68,9 @@ namespace Summit.Controller
         [HttpPost]
         public async Task<ActionResult<Aluguel>> PostAluguel(AluguelRequest aluguelRequest)
         {
-            if (_context.Tentativa.FirstOrDefault(t => t.CarId == aluguelRequest.CarroId) == null)
+            var clienteFazendoReq = await _context.Tentativa.FindAsync(aluguelRequest.ClienteId);
+
+            if (clienteFazendoReq == null)
             {
                 return Unauthorized();
             }
@@ -84,8 +81,8 @@ namespace Summit.Controller
             var seguro = await _context.Seguro.FindAsync(aluguelRequest.SeguroId);
             var saida = await _context.Saida.FindAsync(aluguelRequest.SaidaId);
             var chegada = await _context.Chegada.FindAsync(aluguelRequest.ChegadaId);
-            
-            Aluguel aluguel = new(carro, cliente, pagamento, seguro, saida, chegada);
+
+            Aluguel aluguel = new(DateTime.Now, carro, cliente, pagamento, seguro, saida, chegada);
 
             _context.Aluguel.Add(aluguel);
             await _context.SaveChangesAsync();
