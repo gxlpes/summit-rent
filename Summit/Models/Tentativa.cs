@@ -11,13 +11,11 @@ namespace Summit.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid ClienteId { get; set; }
 
-
         [Column("id_carro")]
         public Guid CarroId { get; set; }
 
         [Column("date")]
         public DateTime DataTentativa { get; set; }
-
 
     }
 }

@@ -87,6 +87,9 @@ namespace Summit.Controller
             _context.Aluguel.Add(aluguel);
             await _context.SaveChangesAsync();
 
+            var tentativas = await _context.Tentativa.Where(t => t.ClienteId == aluguelRequest.ClienteId).ToListAsync();
+            _context.Tentativa.RemoveRange(tentativas);
+
             return CreatedAtAction("GetAluguel", new { id = aluguel.Id }, aluguel);
         }
 

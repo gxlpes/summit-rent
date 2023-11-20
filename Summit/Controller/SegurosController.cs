@@ -36,7 +36,7 @@ namespace Summit.Controller
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutSeguro(int id, Seguro seguro)
+        public async Task<IActionResult> PutSeguro(Guid id, Seguro seguro)
         {
             if (id != seguro.Id)
             {
@@ -88,7 +88,7 @@ namespace Summit.Controller
             return NoContent();
         }
 
-        private bool SeguroExists(int id)
+        private bool SeguroExists(Guid id)
         {
             return _context.Seguro.Any(e => e.Id == id);
         }

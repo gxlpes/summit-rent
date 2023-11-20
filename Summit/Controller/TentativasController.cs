@@ -51,5 +51,20 @@ namespace Summit.Controller
             return CreatedAtAction("GetTentativa", new { id = tentativa.ClienteId }, tentativa);
         }
 
+[HttpDelete("{clienteId}")]
+public async Task<ActionResult<Tentativa>> DeleteTentativaByClienteId(Guid clienteId)
+{
+    if (!await _context.Tentativa.AnyAsync(t => t.ClienteId == clienteId))
+    {
+        return NotFound();
+    }
+
+    var tentativas = await _context.Tentativa.Where(t => t.ClienteId == clienteId).ToListAsync();
+    _context.Tentativa.RemoveRange(tentativas);
+    await _context.SaveChangesAsync();
+
+    return Ok(tentativas);
+}
+
     }
 }

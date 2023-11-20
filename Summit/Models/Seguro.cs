@@ -6,10 +6,8 @@ namespace Summit.Models
     [Table("seguros")]
     public class Seguro
     {
-        [Key]
-        [Column("id")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         [Column("nome")]
         public string Nome { get; set; }

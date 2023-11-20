@@ -65,14 +65,15 @@ namespace Summit.Controller
             return NoContent();
         }
 
-        [HttpPost]
-        public async Task<ActionResult<Chegada>> PostChegadaSemData (Chegada chegada)
-        {
-            _context.Chegada.Add(chegada);
-            await _context.SaveChangesAsync();
+[HttpPost]
+public async Task<ActionResult<Chegada>> PostChegadaSemData(Chegada chegada)
+{
+    _context.Chegada.Add(chegada);
+    await _context.SaveChangesAsync();
 
-            return CreatedAtAction("PostChegada", chegada);
-        }
+    return CreatedAtAction("GetChegada", new { id = chegada.Id }, chegada);
+}
+
 
 
         [HttpDelete("{id}")]
